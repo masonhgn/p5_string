@@ -24,7 +24,6 @@ public:
   ~MyString();				// destructor
   MyString(const MyString& );		// copy constructor
   MyString& operator=(const MyString& );   // assignment operator
-
   MyString& operator+=(const MyString& );  // concatenation/assignment
 
   // bracket operators to access char positions
@@ -44,7 +43,9 @@ public:
   MyString substring(unsigned int , unsigned int ) const;
   MyString substring(unsigned int ) const;
 
+
+
 private:
   char* chars;
-  int maxSize, currentSize;
+  unsigned int size;
 };

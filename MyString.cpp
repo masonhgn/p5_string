@@ -1,14 +1,21 @@
 #include "MyString.h"
-
+#include <cstring>
 
 MyString::MyString() {
 //default constructor
-	maxSize = 0;
-	currentSize = 0;
+	size = 0;
+    chars = new char[size+1];
+    chars[0] = '\0'; //put null char in only array slot
 }
 
-MyString::MyString(const char*) {
-//conversion from cstring
+MyString::MyString(const char* c) {
+//conversion from cstring 35:24
+//s1 = "string" only works if you have this function
+    size = strlen(c);
+    chars = new char[size+1]; //accounts for extra /n char in cstring library
+    strcpy(chars, c);
+
+
 }
 
 MyString::MyString(int i ) {
@@ -17,11 +24,12 @@ MyString::MyString(int i ) {
 
 MyString::~MyString() {
 //destructor
-	delete[] chars
+	delete[] chars;
 }
 
 MyString::MyString(const MyString& s) {
 //copy constructor
+
 }
 
 MyString& MyString::operator=(const MyString& s) {
@@ -50,6 +58,7 @@ int MyString::indexOf(const MyString& s) const {
 
 int MyString::getLength() const {
 //return length of string
+    return size;
 }
 
 const char* MyString::getCString() const {
@@ -68,10 +77,17 @@ MyString MyString::substring(unsigned int i) const {
 
 ostream& operator<<(ostream& o, const MyString& s) {
 //insertion operator
+//    for (int i = 0; i < s.size; i++) {
+//        o << s.chars[i]; //print out each letter
+//    }
+
+    o << s.chars;
+    return o;
 }
 
-ostream& operator>>(istream& i, MyString& s) {
+istream& operator>>(istream& i, MyString& s) {
 //extraction operator
+return i;
 }
 
 istream& getLine(istream& i, MyString& s) {
@@ -82,7 +98,7 @@ istream& getLine(istream& i, MyString& s, char delim) {
 //getline function with delimiter
 }
 
-MyString operator+(const MyString& s, const MyString& s) {
+MyString operator+(const MyString& a, const MyString& b) {
 //operator+
 }
 
@@ -90,27 +106,27 @@ MyString operator+(const MyString& s, const MyString& s) {
 
 
 
-friend bool operator< (const MyString& , const MyString& ) {
+bool operator< (const MyString& , const MyString& ) {
 //operator<
 }
 
-friend bool operator> (const MyString& , const MyString& ) {
+bool operator> (const MyString& , const MyString& ) {
 //operator>
 }
 
-friend bool operator<=(const MyString& , const MyString& ) {
+bool operator<=(const MyString& , const MyString& ) {
 //operator<=
 }
 
-friend bool operator>=(const MyString& , const MyString& ) {
+bool operator>=(const MyString& , const MyString& ) {
 //operator>=
 }
 
-friend bool operator==(const MyString& , const MyString& ) {
+bool operator==(const MyString& , const MyString& ) {
 //operator==
 }
 
-friend bool operator!=(const MyString& , const MyString& ) {
+bool operator!=(const MyString& , const MyString& ) {
 //operator!=
 }
 
