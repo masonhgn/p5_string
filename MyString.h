@@ -26,10 +26,13 @@ public:
   MyString& operator=(const MyString& );   // assignment operator
   MyString& operator+=(const MyString& );  // concatenation/assignment
 
+
+
+  //grow function
+  void grow(unsigned int sz);
   // bracket operators to access char positions
   char& operator[] (unsigned int index);
   const char& operator[] (unsigned int index) const;
-
   // insert s into the string at position "index"
   MyString& insert(unsigned int index, const MyString& s);
 
